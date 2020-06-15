@@ -16,13 +16,13 @@ _global_script_class_icons={
 [application]
 
 config/name="Godot-Shaders"
-run/main_scene="res://WaterShader/WaterScene.tscn"
+run/main_scene="res://ImpactEffectShader/ImpactEffectScene.tscn"
 config/icon="res://icon.png"
 
 [display]
 
-window/size/width=512
-window/size/height=512
+window/size/width=750
+window/size/height=750
 window/size/resizable=false
 
 [input]
@@ -40,6 +40,7 @@ mouse_wheel_down={
 
 [rendering]
 
+quality/driver/driver_name="GLES2"
 quality/2d/use_pixel_snap=true
 environment/default_clear_color=Color( 0.0470588, 0.819608, 1, 1 )
 environment/default_environment="res://default_env.tres"

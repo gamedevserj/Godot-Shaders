@@ -3,6 +3,7 @@ extends Camera2D
 export(float) var zoomIncrement = 0.05;
 export(float) var positionIncrement = 0.1;
 export(float) var speed = 1;
+export(bool) var canBeMoved = true;
 
 export(NodePath) var target;
 
@@ -11,16 +12,17 @@ var targetPos = Vector2.ZERO;
 
 func _process(delta):
 	self.zoom = camZoom;
-	self.global_position = lerp(get_global_position(), get_node(target).position, delta*speed);
-	
-	if Input.is_key_pressed(KEY_W):
-		get_node(target).position.y -= positionIncrement;
-	elif Input.is_key_pressed(KEY_S):
-		get_node(target).position.y += positionIncrement;
-	if Input.is_key_pressed(KEY_A):
-		get_node(target).position.x -= positionIncrement;
-	elif Input.is_key_pressed(KEY_D):
-		get_node(target).position.x += positionIncrement;
+	if(canBeMoved):
+		self.global_position = lerp(get_global_position(), get_node(target).position, delta*speed);
+		
+		if Input.is_key_pressed(KEY_W):
+			get_node(target).position.y -= positionIncrement;
+		elif Input.is_key_pressed(KEY_S):
+			get_node(target).position.y += positionIncrement;
+		if Input.is_key_pressed(KEY_A):
+			get_node(target).position.x -= positionIncrement;
+		elif Input.is_key_pressed(KEY_D):
+			get_node(target).position.x += positionIncrement;
 	pass
 
 func _input(event):
