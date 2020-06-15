@@ -2,6 +2,8 @@
 
 A collection of shaders that I wrote in Unity converted to be used in Godot.
 
+Godot version 3.2.1
+
 ## Reflective water
 
 <img src="https://github.com/gamedevserj/Godot-Shaders/blob/master/GithubImages/Water1.png" height="512">
