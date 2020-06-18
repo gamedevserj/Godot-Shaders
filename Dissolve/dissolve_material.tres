@@ -1,0 +1,17 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=2]
+
+[ext_resource path="res://Dissolve/dissolve_shader.shader" type="Shader" id=1]
+
+[sub_resource type="OpenSimplexNoise" id=1]
+
+[sub_resource type="NoiseTexture" id=2]
+seamless = true
+noise = SubResource( 1 )
+
+[resource]
+shader = ExtResource( 1 )
+shader_param/noiseScale = 1.5
+shader_param/dissolveAmount = 0.0
+shader_param/edgeThickness = 0.05
+shader_param/edgeColor = Color( 0, 0.0862745, 1, 1 )
+shader_param/noiseTexture = SubResource( 2 )
