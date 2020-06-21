@@ -7,7 +7,6 @@ varying vec2 vertPos;
 
 void vertex()
 {
-	vec4 test = PROJECTION_MATRIX * vec4(VERTEX.x, VERTEX.y, 0, 0);
 	vertPos = VERTEX;
 }
 

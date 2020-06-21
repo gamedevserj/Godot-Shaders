@@ -37,3 +37,13 @@ Click anywhere in the demo scene to produce the effect.
 Dissolves the image using the noise as a guide.
 
 Left click in the demo scene to dissolve sprite, right click to undo.
+
+## Magnifying glass
+
+<img src="https://github.com/gamedevserj/Godot-Shaders/blob/master/GithubImages/MagnifyingGlass.png" height="512">
+
+Magnifying glass effect. The script uses get_global_transform_with_canvas() to set the correct offset for the current position. When testing it on monitor with 1920x1080 resolution the magnification didn't work correctly if the display height was set above 850 and game window had border enabled. Without window border everything worked perfectly. 
+
+Changing edge distortion strength to positive/negative values results in simulating glass being concave/convex. 
+
+Use mouse wheel to zoom in/out.
