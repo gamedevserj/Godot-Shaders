@@ -16,7 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Godot-Shaders"
-run/main_scene="res://ImpactEffectShader/ImpactEffectScene.tscn"
+run/main_scene="res://WaterShader/WaterScene.tscn"
 config/icon="res://icon.png"
 
 [display]

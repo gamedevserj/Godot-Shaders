@@ -132,8 +132,7 @@ target = NodePath("../CamTarget")
 [node name="Water" type="Sprite" parent="."]
 modulate = Color( 0, 0.619608, 1, 1 )
 material = ExtResource( 3 )
-position = Vector2( 7.537, 0 )
-scale = Vector2( 2.599, 0.79958 )
+scale = Vector2( 2.6, 0.8 )
 z_index = 5
 texture = ExtResource( 6 )
 offset = Vector2( 0, 256 )

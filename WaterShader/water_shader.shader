@@ -10,6 +10,13 @@ uniform float maxOffset;
 uniform vec2 distortionScale = vec2(0.3, 0.3);
 uniform vec2 distortionSpeed = vec2(0.01, 0.02);
 
+uniform float waveDepth = .013;
+uniform float waveAreaDistanceFromTop = 1.5;
+
+uniform float waveSpeed = 2.5;
+uniform float waveFrequency = 20;
+uniform float waveAmplitude = 1;
+
 void fragment()
 {
 	
@@ -38,6 +45,13 @@ void fragment()
 	
 	uv += noiseOffset;
 	vec4 color = texture(SCREEN_TEXTURE, uv);
+	
+	vec2 waveUv = UV;
+	float dist = waveAmplitude * sin(waveUv.x * waveFrequency + TIME * waveSpeed) + waveAreaDistanceFromTop;
+	
+	float waveArea = waveUv.y * 1./waveDepth - dist;
+	color.a *= waveArea;
+	
 	
 	COLOR = color;
 }
