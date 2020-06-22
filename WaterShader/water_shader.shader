@@ -10,8 +10,7 @@ uniform float maxOffset;
 uniform vec2 distortionScale = vec2(0.3, 0.3);
 uniform vec2 distortionSpeed = vec2(0.01, 0.02);
 
-uniform float waveDepth = .013;
-uniform float waveAreaDistanceFromTop = 1.5;
+uniform float waveSmoothing = .01;
 
 uniform float waveSpeed = 2.5;
 uniform float waveFrequency = 20;
@@ -47,9 +46,10 @@ void fragment()
 	vec4 color = texture(SCREEN_TEXTURE, uv);
 	
 	vec2 waveUv = UV;
-	float dist = waveAmplitude * sin(waveUv.x * waveFrequency + TIME * waveSpeed) + waveAreaDistanceFromTop;
+	//adding the wave amplitude at the end to offset it enough so it doesn't go outside the sprite's bounds
+	float dist = waveAmplitude * sin(waveUv.x * waveFrequency + TIME * waveSpeed) + waveAmplitude;
 	
-	float waveArea = waveUv.y * 1./waveDepth - dist;
+	float waveArea = waveUv.y * 1./waveSmoothing - dist;
 	color.a *= waveArea;
 	
 	
