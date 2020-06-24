@@ -7,7 +7,7 @@
 [ext_resource path="res://Assets/Sunnyland/artwork/Environment/props/rock.png" type="Texture" id=5]
 [ext_resource path="res://Assets/Sunnyland/artwork/Environment/props/house.png" type="Texture" id=6]
 [ext_resource path="res://Assets/Sunnyland/artwork/Environment/middle.png" type="Texture" id=7]
-[ext_resource path="res://Dissolve/dissolve_material.tres" type="Material" id=8]
+[ext_resource path="res://StealthCloakEffect/stealth_cloak_effect_mat.tres" type="Material" id=8]
 [ext_resource path="res://Assets/Sunnyland/artwork/Sprites/player/idle/player-idle-3.png" type="Texture" id=9]
 [ext_resource path="res://Assets/Sunnyland/artwork/Environment/props/bush.png" type="Texture" id=10]
 [ext_resource path="res://Assets/Sunnyland/artwork/Sprites/player/idle/player-idle-2.png" type="Texture" id=11]
@@ -87,13 +87,9 @@ z_index = -2
 texture = ExtResource( 10 )
 
 [node name="house" type="Sprite" parent="props"]
-material = ExtResource( 8 )
 position = Vector2( 51.684, -85.842 )
 z_index = -2
 texture = ExtResource( 6 )
-script = ExtResource( 17 )
-
-[node name="Tween" type="Tween" parent="props/house"]
 
 [node name="Node2D" type="Node2D" parent="props"]
 
@@ -123,11 +119,14 @@ z_index = -3
 texture = ExtResource( 7 )
 
 [node name="Player" type="AnimatedSprite" parent="."]
-position = Vector2( -24.7046, -47.0862 )
-z_index = 1
+material = ExtResource( 8 )
+position = Vector2( 24.3131, -48.0934 )
+z_index = 3
 frames = SubResource( 1 )
-frame = 3
 playing = true
+script = ExtResource( 17 )
+
+[node name="Tween" type="Tween" parent="Player"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 0, -150 )
