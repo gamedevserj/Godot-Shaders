@@ -19,10 +19,17 @@ void fragment()
 	
 	vec4 difference = step1 - step2; // difference between results of two step functions is the edge area
 	vec4 coloredEdge = difference * edgeColor; // setting the edge's color
-
+	
+	// variant 1 - blends edge color with main texture color
 	vec4 textureAndEdge = originalTexture + coloredEdge; // adding the edge color to the original texture
 	textureAndEdge.a *= step1.r; // multiplying alpha by step1 red channel (can be green or blue as well), completely black areas will be transparent
-
 	COLOR = textureAndEdge;
+	
+	// variant 2 - edge color overlays main texture
+	//coloredEdge.a = difference.r; // setting the black part to be transparent
+	//coloredEdge.a *= originalTexture.a;// setting the colored parts that are outside of the original texture to be transparent
+	//originalTexture.a *= step1.r;
+	//vec4 combinedColor = mix(originalTexture, coloredEdge, difference.r);
+	//COLOR = combinedColor;
 }
 	
