@@ -12,11 +12,19 @@ This shader uses SCREEN_TEXTURE to display reflective image to simulate water. J
 
 Reflection is calculated using object's position, which means if you want to have reflection from top of the object then you need to set Y axis offset to half its height. Visible height of the water object can not exceed the distance to the top of the screen.
 
+Adjustable parameters:
+Distortion
+Waves
+Shoreline
+Shoreline foam
+
+
 Here's an example of the limitations.
 
 <img src="https://github.com/gamedevserj/Godot-Shaders/blob/master/GithubImages/Water1.png" height="256"> <img src="https://github.com/gamedevserj/Godot-Shaders/blob/master/GithubImages/Water2.png" height="256"> <img src="https://github.com/gamedevserj/Godot-Shaders/blob/master/GithubImages/Water3.png" height="256">
 
-In the first image the water starts from the bottom of the screen and goes up to the middle. Which means its visible height is equal  to the distance to the top of the screen. In the second image camera is moved lower, which results in water height being greater than the distance to the top. In the third image the water is way higher than the middle of the screen, but its height is smaller that the distance to the top, so reflections work properly.
+In the first image the water starts from the bottom of the screen and goes up to the middle. Which means its visible height is equal  to the distance to the top of the screen. In the second image camera is moved lower, which results in water height being greater than the distance to the top. In the third image the water is way higher than the middle of the screen, but its height is smaller that the distance to the top, so reflections work properly. 
+Examples 2 and 3 do not feature reflections squashing, squashing the reflection results in a greater area being reflected which means that object's visible height must be smaller.
 
 The scene contains a script that allows camera to move(WASD keys) and zoom(mouse scroll).
 

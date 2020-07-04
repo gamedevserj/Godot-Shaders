@@ -6,8 +6,10 @@ extends Node
 # var b = "text"
 export(NodePath) var cameraPath
 
+export(bool) var deb;
+
 var scrHeight;
-var calculatedOffset;
+var calculatedOffset : float;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -15,10 +17,16 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var camZoom = get_node(cameraPath).zoom;
-	calculatedOffset = (-get_node(cameraPath).position.y/(scrHeight) + self.position.y/scrHeight) * 2 / camZoom.y;
-	self.material.set_shader_param("offset", calculatedOffset);
+	var camZoom = get_node(cameraPath).zoom.y;
 	
-	self.material.set_shader_param("aspect", self.scale.y/self.scale.x);
-	#pass
+	var squashing = self.material.get_shader_param("squashing");
+	
+	var adjustingForCameraPos = (get_node(cameraPath).position.y/(scrHeight * camZoom))*(1+squashing);
+	var adjustingForObjectPos = (self.position.y/(scrHeight * camZoom))*(1+squashing);
+
+	calculatedOffset = -0.5 + 0.5*squashing - adjustingForCameraPos + adjustingForObjectPos;
+	
+	self.material.set_shader_param("calculatedOffset", calculatedOffset);
+	self.material.set_shader_param("calculatedAspect", self.scale.y/self.scale.x);
+
 

@@ -1,0 +1,31 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=2]
+
+[ext_resource path="res://WaterShader/water_shader.shader" type="Shader" id=1]
+
+[sub_resource type="OpenSimplexNoise" id=1]
+
+[sub_resource type="NoiseTexture" id=2]
+seamless = true
+noise = SubResource( 1 )
+
+[resource]
+render_priority = 1
+shader = ExtResource( 1 )
+shader_param/offset = -0.1
+shader_param/aspect = 1.0
+shader_param/offsetStrength = 0.0
+shader_param/maxOffset = 10.0
+shader_param/distortionScale = Vector2( 0, 0 )
+shader_param/distortionSpeed = Vector2( 0.1, 0.1 )
+shader_param/waveSmoothing = 0.0
+shader_param/mainWaveSpeed = 0.0
+shader_param/mainWaveFrequency = 0.0
+shader_param/mainWaveAmplitude = 0.0
+shader_param/secondWaveSpeed = 0.0
+shader_param/secondWaveFrequency = 20.0
+shader_param/secondWaveAmplitude = 0.0
+shader_param/thirdWaveSpeed = 0.0
+shader_param/thirdWaveFrequency = 20.0
+shader_param/thirdWaveAmplitude = 0.0
+shader_param/squashing = 3.0
+shader_param/noiseTexture = SubResource( 2 )
