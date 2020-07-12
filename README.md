@@ -63,3 +63,9 @@ Use mouse wheel to zoom in/out.
 Essentially this is a dissolve effect, that overlays one texture over another instead of simply changing the alpha.
 
 <img src="https://github.com/gamedevserj/Godot-Shaders/blob/master/GithubImages/StealthCloak1.png" height="256"> <img src="https://github.com/gamedevserj/Godot-Shaders/blob/master/GithubImages/StealthCloak2.png" height="256"> <img src="https://github.com/gamedevserj/Godot-Shaders/blob/master/GithubImages/StealthCloak3.png" height="256">
+
+## Grass sway effect
+
+<img src="https://github.com/gamedevserj/Godot-Shaders/blob/master/GithubImages/GrassSway.png" height="512">
+
+A basic grass sway effect that modifies vertex positions to skew the object. In order for the effect to work properly modify offset to make object's origin to be at the bottom.
