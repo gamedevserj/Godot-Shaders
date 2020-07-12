@@ -12,12 +12,15 @@ This shader uses SCREEN_TEXTURE to display reflective image to simulate water. J
 
 Reflection is calculated using object's position, which means if you want to have reflection from top of the object then you need to set Y axis offset to half its height. Visible height of the water object can not exceed the distance to the top of the screen.
 
-Adjustable parameters:
-Distortion
-Waves
-Shoreline
-Shoreline foam
+Adjustable parameters:  
+Reflection offset  
+Reflection blur<sup>(1)</sup>  
+Distortion  
+Waves  
+Shoreline  
+Shoreline foam  
 
+(1) Reflection blur is only available when project's dirver is set to GLES3, which might break effect stacking (eg. impact effect might completely remove water). A way to deal with this is described [here](https://docs.godotengine.org/ru/stable/tutorials/shading/screen-reading_shaders.html).
 
 Here's an example of the limitations.
 
@@ -63,3 +66,9 @@ Use mouse wheel to zoom in/out.
 Essentially this is a dissolve effect, that overlays one texture over another instead of simply changing the alpha.
 
 <img src="https://github.com/gamedevserj/Godot-Shaders/blob/master/GithubImages/StealthCloak1.png" height="256"> <img src="https://github.com/gamedevserj/Godot-Shaders/blob/master/GithubImages/StealthCloak2.png" height="256"> <img src="https://github.com/gamedevserj/Godot-Shaders/blob/master/GithubImages/StealthCloak3.png" height="256">
+
+## Grass sway effect
+
+<img src="https://github.com/gamedevserj/Godot-Shaders/blob/master/GithubImages/GrassSway.png" height="512">
+
+A basic grass sway effect that modifies vertex positions to skew the object. In order for the effect to work properly modify offset to make object's origin to be at the bottom.
