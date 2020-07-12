@@ -2,6 +2,7 @@ shader_type canvas_item;
 
 
 uniform float reflectionOffset = 0; // allows player to control reflection position
+uniform float reflectionBlur = 0; // works only if projec's driver is set to GLES3, more information here https://docs.godotengine.org/ru/stable/tutorials/shading/screen-reading_shaders.html
 uniform float calculatedOffset = 0; // this is controlled by script, it takes into account camera position and water object position, that way reflection stays in the same place when camera is moving
 uniform float calculatedAspect = 1; // is controlled by script, ensures that noise is not affected by object scale
 uniform sampler2D noiseTexture;
@@ -64,7 +65,7 @@ void fragment()
 	
 	uv += noiseOffset;
 	
-	vec4 color = texture(SCREEN_TEXTURE, uv);
+	vec4 color = textureLod(SCREEN_TEXTURE, uv, reflectionBlur);
 	
 	//adding the wave amplitude at the end to offset it enough so it doesn't go outside the sprite's bounds
 	float distFromTop = mainWaveAmplitude * sin(UV.x * mainWaveFrequency + TIME * mainWaveSpeed) + mainWaveAmplitude
