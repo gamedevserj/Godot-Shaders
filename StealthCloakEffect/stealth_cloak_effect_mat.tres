@@ -17,11 +17,12 @@ noise = SubResource( 3 )
 [resource]
 shader = ExtResource( 1 )
 shader_param/noiseScale = 2.0
-shader_param/dissolveAmount = 0.0
+shader_param/dissolveAmount = 0.953
 shader_param/edgeThickness = 0.03
 shader_param/edgeColor = Color( 0, 1, 0.0156863, 1 )
-shader_param/distortionScale = Vector2( 1, 1 )
+shader_param/invisibilityTint = null
+shader_param/distortionTiling = Vector2( 1, 1 )
 shader_param/distortionSpeed = Vector2( 0, -0.1 )
-shader_param/distortionStrength = 0.05
+shader_param/distortionStrength = 0.308
 shader_param/dissolveNoiseTexture = SubResource( 2 )
 shader_param/distortionNoiseTexture = SubResource( 4 )
