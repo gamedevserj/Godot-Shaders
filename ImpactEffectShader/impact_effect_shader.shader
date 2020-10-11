@@ -7,25 +7,25 @@ varying vec2 vertPos;
 
 void vertex()
 {
-	vertPos = VERTEX;
+	vertPos = normalize(VERTEX);
 }
 
 void fragment()
 {
 	
 	vec2 noiseOffset = texture(noiseTexture, UV).rg;
-	// without multiplication by screen pixel size the effect is too strong
-	noiseOffset *= vertPos * SCREEN_PIXEL_SIZE;
+	
 	noiseOffset *= offsetStrength;
+	noiseOffset = smoothstep(0.0, 5.0, noiseOffset);
 	
-	vec2 uv = SCREEN_UV; 
-	uv.x -= noiseOffset.x;
-	uv.y += noiseOffset.y;
+	noiseOffset *= vertPos;
 	
-	vec4 color = texture(SCREEN_TEXTURE, uv);
+	vec2 screenUV = SCREEN_UV; 
+	screenUV.x -= noiseOffset.x;
+	screenUV.y += noiseOffset.y;
+	
+	vec4 color = texture(SCREEN_TEXTURE, screenUV);
 	color.a = texture(TEXTURE, UV).a;
-	//vec4 color = vec4(1.,1.,1.,1.);
-	
-	
+
 	COLOR = color;
 }
