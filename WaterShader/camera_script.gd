@@ -4,6 +4,7 @@ export(float) var zoomIncrement = 0.05;
 export(float) var positionIncrement = 0.1;
 export(float) var speed = 1;
 export(bool) var canBeMoved = true;
+export(bool) var canZoom = true;
 
 export(NodePath) var target;
 
@@ -11,7 +12,7 @@ var camZoom = Vector2(1,1);
 var targetPos = Vector2.ZERO;
 
 func _process(delta):
-	self.zoom = camZoom;
+	if(canZoom): self.zoom = camZoom;
 	if(canBeMoved):
 		self.global_position = lerp(get_global_position(), get_node(target).position, delta*speed);
 		
@@ -26,9 +27,9 @@ func _process(delta):
 	pass
 
 func _input(event):
-	if(Input.is_mouse_button_pressed(4)): #wheel up
+	if(canZoom && Input.is_mouse_button_pressed(4)): #wheel up
 		camZoom -= Vector2.ONE * zoomIncrement;
-	if(Input.is_mouse_button_pressed(5)): #wheel down
+	if(canZoom && Input.is_mouse_button_pressed(5)): #wheel down
 		camZoom += Vector2.ONE * zoomIncrement;
 	#if event is InputEventKey and event.is_action_pressed(KEY_W):
 	

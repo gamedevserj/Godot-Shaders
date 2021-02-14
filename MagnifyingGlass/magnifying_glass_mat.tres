@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=2]
+
+[ext_resource path="res://MagnifyingGlass/magnifying_glass.shader" type="Shader" id=1]
+[ext_resource path="res://MagnifyingGlass/magnifying_glass_distortion_gradient.png" type="Texture" id=2]
+
+[resource]
+shader = ExtResource( 1 )
+shader_param/edgeDistortionStrength = -0.1
+shader_param/tiling = Vector2( 1, 0.9 )
+shader_param/offset = Vector2( 0, 0.05 )
+shader_param/gradientTexture = ExtResource( 2 )
