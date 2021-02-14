@@ -12,12 +12,15 @@ This shader uses SCREEN_TEXTURE to display reflective image to simulate water. J
 
 Reflection is calculated using object's position, which means if you want to have reflection from top of the object then you need to set Y axis offset to half its height. Visible height of the water object can not exceed the distance to the top of the screen.
 
-Adjustable parameters:
-Distortion
-Waves
-Shoreline
-Shoreline foam
+Adjustable parameters:  
+Reflection offset  
+Reflection blur<sup>(1)</sup>  
+Distortion  
+Waves  
+Shoreline  
+Shoreline foam  
 
+(1) Reflection blur is only available when project's dirver is set to GLES3, which might break effect stacking (eg. impact effect might completely remove water). A way to deal with this is described [here](https://docs.godotengine.org/ru/stable/tutorials/shading/screen-reading_shaders.html).
 
 Here's an example of the limitations.
 
