@@ -10,7 +10,7 @@ noise = SubResource( 1 )
 
 [resource]
 shader = ExtResource( 1 )
-shader_param/noiseScale = 1.5
+shader_param/noiseTiling = 2.0
 shader_param/dissolveAmount = 0.0
 shader_param/edgeThickness = 0.05
 shader_param/edgeColor = Color( 0, 0.0862745, 1, 1 )
