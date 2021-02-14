@@ -11,6 +11,7 @@ uniform float maxOffset;
 
 uniform vec2 distortionScale = vec2(0.3, 0.3);
 uniform vec2 distortionSpeed = vec2(0.01, 0.02);
+uniform vec2 distortionStrength = vec2(0.01, 0.02);
 
 uniform float waveSmoothing = .01;
 
@@ -30,7 +31,8 @@ uniform float squashing = 1.;
 
 uniform vec4 shorelineColor : hint_color = vec4(1.);
 uniform float shorelineSize : hint_range(0., 0.1) = 0.0025;
-uniform float shorelineFoamSize : hint_range(0., 0.1) = 0.0025;
+uniform float foamSize : hint_range(0., 0.1) = 0.0025;
+uniform float foamStrength : hint_range(0., 2.) = 0.0025;
 uniform float foamSpeed;
 uniform vec2 foamScale;
 
@@ -47,23 +49,10 @@ void fragment()
 	noiseTextureUV.y *= calculatedAspect;
 	noiseTextureUV += TIME * distortionSpeed; // scroll noise over time
 	
-	vec2 noiseOffset = texture(noiseTexture, noiseTextureUV).rg * offsetStrength;
-	
-	// remapping the noise
-	//original formula --- output = (input - minInput) / (maxInput - minInput) * (maxOutput - minOutput) + minOutput
-	// using 0 as minInput and 100 as maxInput
-	noiseOffset.x = noiseOffset.x / 100. * maxOffset;
-	
-	// secondary noise to simulate smaller ripples, values are set to be too much to show off the effect
-	/*vec2 noiseTextureUV2 = UV * distortionScale * 10.; 
-	noiseTextureUV2.y *= aspect;
-	noiseTextureUV2 += TIME * distortionSpeed * .5;
-	
-	vec2 noiseOffset2 = texture(noiseTexture, noiseTextureUV2).rg * offsetStrength;
-	noiseOffset2.x = noiseOffset2.x / 100. * maxOffset;
-	noiseOffset += noiseOffset2;*/
-	
-	uv += noiseOffset;
+	vec2 waterDistortion = texture(noiseTexture, noiseTextureUV).rg;
+	waterDistortion.rg *= distortionStrength.xy;
+	waterDistortion.xy = smoothstep(0.0, 5., waterDistortion.xy); 
+	uv += waterDistortion;
 	
 	vec4 color = textureLod(SCREEN_TEXTURE, uv, reflectionBlur);
 	
@@ -74,22 +63,32 @@ void fragment()
 
 	float waveArea = UV.y - distFromTop;
 	
-	float shoreline = smoothstep(0.0, waveArea, shorelineSize); 
+
+	waveArea = smoothstep(0., 1. * waveSmoothing, waveArea);
+	
+	color.a *= waveArea;
+
+	float shorelineBottom = UV.y - distFromTop - shorelineSize;
+	shorelineBottom = smoothstep(0., 1. * waveSmoothing,  shorelineBottom);
+	
+	float shoreline = waveArea - shorelineBottom;
 	color.rgb += shoreline * shorelineColor.rgb;
 	
-	float shorelineFoam = smoothstep(0.0, waveArea, shorelineFoamSize);
-	vec2 foamNoiseUV = UV * foamScale; 
-	foamNoiseUV.y *= calculatedAspect;
-	foamNoiseUV.y -= TIME * foamSpeed;
-	vec4 foamNoise = texture(noiseTexture, foamNoiseUV);
+	//this approach allows smoother blendign between shoreline and foam
+	/*
+	float shorelineTest1 = UV.y - distFromTop;
+	shorelineTest1 = smoothstep(0.0, shorelineTest1, shorelineSize);
+	color.rgb += shorelineTest1 * shorelineColor.rgb;
+	*/
+	
+	vec4 foamNoise = texture(noiseTexture, UV* foamScale + TIME * foamSpeed);
+	foamNoise.r = smoothstep(0.0, foamNoise.r, foamStrength); 
+	
+	float shorelineFoam = UV.y - distFromTop;
+	shorelineFoam = smoothstep(0.0, shorelineFoam, foamSize);
+	
 	shorelineFoam *= foamNoise.r;
-	
 	color.rgb += shorelineFoam * shorelineColor.rgb;
-	
-	float upperPart = 1.0 - step(0.0, waveArea); 
-	waveArea = smoothstep(waveArea, 0., waveSmoothing * (1.-UV.y));
-	waveArea -= upperPart;
-	color.a *= waveArea;
 	
 	COLOR = color;
 }
