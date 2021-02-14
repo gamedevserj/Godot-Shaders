@@ -29,3 +29,11 @@ Impact effect similar to the one produced by a shockwave during explosion. Can b
 Uses SCREEN_TEXTURE and offsets color using the circular gradient noise as a guide.
 
 Click anywhere in the demo scene to produce the effect.
+
+## Dissolve
+
+<img src="https://github.com/gamedevserj/Godot-Shaders/blob/master/GithubImages/Dissolve.png" height="512">
+
+Dissolves the image using the noise as a guide.
+
+Left click in the demo scene to dissolve sprite, right click to undo.
