@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Assets/Sunnyland/artwork/Environment/back.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Sunnyland/artwork/Environment/props/tree.png" type="Texture" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://Assets/Sunnyland/artwork/Environment/props/bush.png" type="Texture" id=15]
 [ext_resource path="res://Assets/Sunnyland/artwork/Environment/middle.png" type="Texture" id=16]
 [ext_resource path="res://Assets/Sunnyland/artwork/Environment/props/big-crate.png" type="Texture" id=17]
+[ext_resource path="res://GrassSway/grass_sway_mat.tres" type="Material" id=18]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -81,6 +82,12 @@ position = Vector2( -43.0405, -266.451 )
 z_index = -1
 texture = ExtResource( 15 )
 
+[node name="bush2" type="Sprite" parent="props"]
+material = ExtResource( 18 )
+position = Vector2( -75.612, -30.4 )
+texture = ExtResource( 15 )
+offset = Vector2( 0, -15 )
+
 [node name="house" type="Sprite" parent="props"]
 position = Vector2( 58.7934, -83.542 )
 texture = ExtResource( 11 )
@@ -114,7 +121,7 @@ texture = ExtResource( 16 )
 position = Vector2( -24.7046, -47.0862 )
 z_index = 1
 frames = SubResource( 1 )
-frame = 2
+frame = 3
 playing = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
