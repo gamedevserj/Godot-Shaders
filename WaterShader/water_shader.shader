@@ -27,6 +27,15 @@ void fragment()
 	// using 0 as minInput and 100 as maxInput
 	noiseOffset.x = noiseOffset.x / 100. * maxOffset;
 	
+	// secondary noise to simulate smaller ripples, values are set to be too much to show off the effect
+	/*vec2 noiseTextureUV2 = UV * distortionScale * 10.; 
+	noiseTextureUV2.y *= aspect;
+	noiseTextureUV2 += TIME * distortionSpeed * .5;
+	
+	vec2 noiseOffset2 = texture(noiseTexture, noiseTextureUV2).rg * offsetStrength;
+	noiseOffset2.x = noiseOffset2.x / 100. * maxOffset;
+	noiseOffset += noiseOffset2;*/
+	
 	uv += noiseOffset;
 	vec4 color = texture(SCREEN_TEXTURE, uv);
 	
