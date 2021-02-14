@@ -1,0 +1,140 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://Assets/Sunnyland/artwork/Environment/back.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Sunnyland/artwork/Environment/props/tree.png" type="Texture" id=2]
+[ext_resource path="res://WaterShader/water_mat.tres" type="Material" id=3]
+[ext_resource path="res://WaterShader/camera_script.gd" type="Script" id=4]
+[ext_resource path="res://WaterShader/water_script.gd" type="Script" id=5]
+[ext_resource path="res://WaterShader/noise.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Sunnyland/artwork/Environment/props/rock.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Sunnyland/artwork/Sprites/player/idle/player-idle-1.png" type="Texture" id=8]
+[ext_resource path="res://ground_tileset.tres" type="TileSet" id=9]
+[ext_resource path="res://Assets/Sunnyland/artwork/Environment/props/shrooms.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Sunnyland/artwork/Environment/props/house.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Sunnyland/artwork/Sprites/player/idle/player-idle-2.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Sunnyland/artwork/Sprites/player/idle/player-idle-3.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Sunnyland/artwork/Sprites/player/idle/player-idle-4.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Sunnyland/artwork/Environment/props/bush.png" type="Texture" id=15]
+[ext_resource path="res://Assets/Sunnyland/artwork/Environment/middle.png" type="Texture" id=16]
+[ext_resource path="res://Assets/Sunnyland/artwork/Environment/props/big-crate.png" type="Texture" id=17]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 8 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Ground" type="TileMap" parent="."]
+z_index = 1
+tile_set = ExtResource( 9 )
+cell_size = Vector2( 32, 32 )
+format = 1
+tile_data = PoolIntArray( -8, 0, 0, -7, 0, 1, -6, 0, 1, -5, 0, 1, -4, 0, 1, -3, 0, 1, -2, 0, 1, -1, 0, 1, -65536, 0, 1, -65535, 0, 1, -65534, 0, 1, -65533, 0, 1, -65532, 0, 1, -65531, 0, 1, -65530, 0, 1, -65529, 0, 2, -65528, 1, 0, 65528, 0, 65536, 65529, 0, 65537, 65530, 0, 65537, 65531, 0, 65537, 65532, 0, 65537, 65533, 0, 65537, 65534, 0, 65537, 65535, 0, 65537, 0, 0, 65537, 1, 0, 65537, 2, 0, 65537, 3, 0, 65537, 4, 0, 65537, 5, 0, 65537, 6, 0, 65537, 7, 0, 65538, 8, 1, 0, 131064, 0, 65536, 131065, 0, 65537, 131066, 0, 65537, 131067, 0, 65537, 131068, 0, 65537, 131069, 0, 65537, 131070, 0, 65537, 131071, 0, 65537, 65536, 0, 65537, 65537, 0, 65537, 65538, 0, 65537, 65539, 0, 65537, 65540, 0, 65537, 65541, 0, 65537, 65542, 0, 65537, 65543, 0, 65538, 65544, 1, 0, 196600, 0, 65536, 196601, 0, 65537, 196602, 0, 65537, 196603, 0, 65537, 196604, 0, 65537, 196605, 0, 65537, 196606, 0, 65537, 196607, 0, 65537, 131072, 0, 65537, 131073, 0, 65537, 131074, 0, 65537, 131075, 0, 65537, 131076, 0, 65537, 131077, 0, 65537, 131078, 0, 65537, 131079, 0, 65538, 131080, 1, 0, 262136, 0, 65536, 262137, 0, 65537, 262138, 0, 65537, 262139, 0, 65537, 262140, 0, 65537, 262141, 0, 65537, 262142, 0, 65537, 262143, 0, 65537, 196608, 0, 65537, 196609, 0, 65537, 196610, 0, 65537, 196611, 0, 65537, 196612, 0, 65537, 196613, 0, 65537, 196614, 0, 65537, 196615, 0, 65538, 327672, 0, 131072, 327673, 0, 131073, 327674, 0, 131073, 327675, 0, 131073, 327676, 0, 131073, 327677, 0, 131073, 327678, 0, 131073, 327679, 0, 131073, 262144, 0, 131073, 262145, 0, 131073, 262146, 0, 131073, 262147, 0, 131073, 262148, 0, 131073, 262149, 0, 131073, 262150, 0, 131073, 262151, 0, 131074 )
+
+[node name="Ground2" type="TileMap" parent="."]
+tile_set = ExtResource( 9 )
+cell_size = Vector2( 32, 32 )
+format = 1
+tile_data = PoolIntArray( -458759, 0, 0, -458758, 0, 1, -458757, 0, 1, -458756, 0, 1, -458755, 0, 1, -458754, 0, 1, -458753, 0, 1, -524288, 0, 2, -393223, 0, 131072, -393222, 0, 131073, -393221, 0, 131073, -393220, 0, 131073, -393219, 0, 131073, -393218, 0, 131073, -393217, 0, 131073, -458752, 0, 131074, -327677, 0, 0, -327676, 0, 1, -327675, 0, 2, -262141, 0, 65536, -262140, 0, 65537, -262139, 0, 65538, -131078, 0, 0, -131077, 0, 1, -131076, 0, 1, -131075, 0, 1, -131074, 0, 2, -196605, 0, 65536, -196604, 0, 65537, -196603, 0, 65538, -65542, 0, 65536, -65541, 0, 65537, -65540, 0, 65537, -65539, 0, 65537, -65538, 0, 65538, -131069, 0, 65536, -131068, 0, 65537, -131067, 0, 65538, -6, 0, 131072, -5, 0, 131073, -4, 0, 131073, -3, 0, 131073, -2, 0, 131074, -65533, 0, 131072, -65532, 0, 131073, -65531, 0, 131074 )
+
+[node name="bg" type="Sprite" parent="."]
+position = Vector2( 15, -167.395 )
+scale = Vector2( 5, 5 )
+z_index = -5
+texture = ExtResource( 1 )
+
+[node name="props" type="Node2D" parent="."]
+
+[node name="tree" type="Sprite" parent="props"]
+position = Vector2( -93.8489, -138.933 )
+z_index = -1
+texture = ExtResource( 2 )
+
+[node name="rock" type="Sprite" parent="props"]
+position = Vector2( -47.407, -38.672 )
+texture = ExtResource( 7 )
+
+[node name="rock2" type="Sprite" parent="props"]
+position = Vector2( -108.961, -37.7967 )
+texture = ExtResource( 7 )
+
+[node name="shrooms" type="Sprite" parent="props"]
+position = Vector2( -114.61, -102.389 )
+texture = ExtResource( 10 )
+
+[node name="shrooms2" type="Sprite" parent="props"]
+position = Vector2( -153.721, -102.39 )
+z_index = -2
+texture = ExtResource( 10 )
+
+[node name="big-crate" type="Sprite" parent="props"]
+position = Vector2( -110.983, -270.636 )
+z_index = -1
+texture = ExtResource( 17 )
+
+[node name="bush" type="Sprite" parent="props"]
+position = Vector2( -43.0405, -266.451 )
+z_index = -1
+texture = ExtResource( 15 )
+
+[node name="house" type="Sprite" parent="props"]
+position = Vector2( 58.7934, -83.542 )
+texture = ExtResource( 11 )
+
+[node name="middle" type="Sprite" parent="props"]
+position = Vector2( -3.50484, -7.55041 )
+z_index = -2
+texture = ExtResource( 16 )
+
+[node name="middle2" type="Sprite" parent="props/middle"]
+position = Vector2( 176, 1.268 )
+z_index = -2
+texture = ExtResource( 16 )
+
+[node name="middle3" type="Sprite" parent="props/middle"]
+position = Vector2( 352, 1.268 )
+z_index = -2
+texture = ExtResource( 16 )
+
+[node name="middle4" type="Sprite" parent="props/middle"]
+position = Vector2( -176, 1.268 )
+z_index = -2
+texture = ExtResource( 16 )
+
+[node name="middle5" type="Sprite" parent="props/middle"]
+position = Vector2( -352, 1.268 )
+z_index = -2
+texture = ExtResource( 16 )
+
+[node name="Player" type="AnimatedSprite" parent="."]
+position = Vector2( -24.7046, -47.0862 )
+z_index = 1
+frames = SubResource( 1 )
+playing = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 0, -100 )
+current = true
+limit_smoothed = true
+smoothing_speed = 10.0
+script = ExtResource( 4 )
+positionIncrement = 1.0
+speed = 5.0
+target = NodePath("../CamTarget")
+
+[node name="CamTarget" type="Node2D" parent="."]
+
+[node name="Water" type="Sprite" parent="."]
+modulate = Color( 0.290196, 0.741176, 0.843137, 1 )
+material = ExtResource( 3 )
+position = Vector2( 7.537, 0 )
+scale = Vector2( 2.599, 0.584364 )
+z_index = 5
+texture = ExtResource( 6 )
+offset = Vector2( 0, 256 )
+script = ExtResource( 5 )
+cameraPath = NodePath("../Camera2D")
