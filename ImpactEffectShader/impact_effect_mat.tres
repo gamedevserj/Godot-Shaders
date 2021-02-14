@@ -5,5 +5,5 @@
 
 [resource]
 shader = ExtResource( 1 )
-shader_param/offsetStrength = 0.119
+shader_param/offsetStrength = 0.41
 shader_param/noiseTexture = ExtResource( 2 )
