@@ -1,0 +1,27 @@
+[gd_resource type="ShaderMaterial" load_steps=6 format=2]
+
+[ext_resource path="res://StealthCloakEffect/stealth_cloak_effect.shader" type="Shader" id=1]
+
+[sub_resource type="OpenSimplexNoise" id=1]
+
+[sub_resource type="NoiseTexture" id=2]
+seamless = true
+noise = SubResource( 1 )
+
+[sub_resource type="OpenSimplexNoise" id=3]
+
+[sub_resource type="NoiseTexture" id=4]
+seamless = true
+noise = SubResource( 3 )
+
+[resource]
+shader = ExtResource( 1 )
+shader_param/noiseScale = 2.0
+shader_param/dissolveAmount = 0.0
+shader_param/edgeThickness = 0.03
+shader_param/edgeColor = Color( 0, 1, 0.0156863, 1 )
+shader_param/distortionScale = Vector2( 1, 1 )
+shader_param/distortionSpeed = Vector2( 0, -0.1 )
+shader_param/distortionStrength = 0.05
+shader_param/dissolveNoiseTexture = SubResource( 2 )
+shader_param/distortionNoiseTexture = SubResource( 4 )

@@ -47,3 +47,11 @@ Magnifying glass effect. The script uses get_global_transform_with_canvas() to s
 Changing edge distortion strength to positive/negative values results in simulating glass being concave/convex. 
 
 Use mouse wheel to zoom in/out.
+
+## Stealth cloak effect
+
+<img src="https://github.com/gamedevserj/Godot-Shaders/blob/master/GithubImages/StealthCloak1.png" height="512">
+
+Essentially this is a dissolve effect, that overlays one texture over another instead of simply changing the alpha.
+
+<img src="https://github.com/gamedevserj/Godot-Shaders/blob/master/GithubImages/StealthCloak1.png" height="256"> <img src="https://github.com/gamedevserj/Godot-Shaders/blob/master/GithubImages/StealthCloak2.png" height="256"> <img src="https://github.com/gamedevserj/Godot-Shaders/blob/master/GithubImages/StealthCloak3.png" height="256">
