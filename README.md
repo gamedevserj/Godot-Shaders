@@ -72,3 +72,8 @@ Essentially this is a dissolve effect, that overlays one texture over another in
 <img src="https://github.com/gamedevserj/Godot-Shaders/blob/master/GithubImages/GrassSway.png" height="512">
 
 A basic grass sway effect that modifies vertex positions to skew the object. In order for the effect to work properly modify offset to make object's origin to be at the bottom.
+
+## Circular fade out
+<img src="https://raw.githubusercontent.com/gamedevserj/Images-For-Repo/main/Site/GodotFadeOutShaderTutorial/fade_out_final.gif" height="512">
+
+Fades out to any point of the screen.
