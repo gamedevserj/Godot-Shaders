@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Assets/Sunnyland/artwork/Environment/back.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Sunnyland/artwork/Environment/props/tree.png" type="Texture" id=2]
@@ -17,6 +17,8 @@
 [ext_resource path="res://Assets/Sunnyland/artwork/Environment/props/bush.png" type="Texture" id=15]
 [ext_resource path="res://Assets/Sunnyland/artwork/Environment/middle.png" type="Texture" id=16]
 [ext_resource path="res://Assets/Sunnyland/artwork/Environment/props/big-crate.png" type="Texture" id=17]
+[ext_resource path="res://CircularFadeOutShader/fade_out_mat.tres" type="Material" id=18]
+[ext_resource path="res://CircularFadeOutShader/circular_fade_out_script.gd" type="Script" id=19]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -114,7 +116,7 @@ texture = ExtResource( 16 )
 position = Vector2( -24.7046, -47.0862 )
 z_index = 1
 frames = SubResource( 1 )
-frame = 3
+frame = 1
 playing = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -137,3 +139,11 @@ texture = ExtResource( 6 )
 offset = Vector2( 0, 256 )
 script = ExtResource( 5 )
 cameraPath = NodePath("../Camera2D")
+
+[node name="FadeOut" type="Sprite" parent="."]
+modulate = Color( 0, 0.619608, 1, 1 )
+material = ExtResource( 18 )
+position = Vector2( 0, -38.345 )
+z_index = 5
+texture = ExtResource( 6 )
+script = ExtResource( 19 )
