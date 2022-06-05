@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[ext_resource path="res://CircularFadeOutShader/circular_fade_out_shader.shader" type="Shader" id=1]
+
+[resource]
+render_priority = 1
+shader = ExtResource( 1 )
+shader_param/offsetStrength = 0.05
+shader_param/fadeAmount = 0.354
+shader_param/fadeSmoothing = 0.05
+shader_param/fadeColor = null
+shader_param/offset = Vector2( 0.5, 0.5 )
+shader_param/tiling = Vector2( 1, 1 )
+shader_param/hypotenuse = 0.707
