@@ -1,8 +1,9 @@
 [remap]
 
 importer="texture"
-type="StreamTexture"
-path="res://.import/StealthCloak3.png-d43d21c0b3ac96d6095a019b19eac606.stex"
+type="CompressedTexture2D"
+uid="uid://bkcq64d6b3y3a"
+path="res://.godot/imported/StealthCloak3.png-d43d21c0b3ac96d6095a019b19eac606.ctex"
 metadata={
 "vram_texture": false
 }
@@ -10,25 +11,24 @@ metadata={
 [deps]
 
 source_file="res://GithubImages/StealthCloak3.png"
-dest_files=[ "res://.import/StealthCloak3.png-d43d21c0b3ac96d6095a019b19eac606.stex" ]
+dest_files=["res://.godot/imported/StealthCloak3.png-d43d21c0b3ac96d6095a019b19eac606.ctex"]
 
 [params]
 
 compress/mode=0
+compress/high_quality=false
 compress/lossy_quality=0.7
-compress/hdr_mode=0
-compress/bptc_ldr=0
+compress/hdr_compression=1
 compress/normal_map=0
-flags/repeat=0
-flags/filter=true
-flags/mipmaps=false
-flags/anisotropic=false
-flags/srgb=2
+compress/channel_pack=0
+mipmaps/generate=false
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
 process/fix_alpha_border=true
 process/premult_alpha=false
-process/HDR_as_SRGB=false
-process/invert_color=false
-stream=false
-size_limit=0
-detect_3d=true
-svg/scale=1.0
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=1

@@ -1,10 +1,9 @@
-extends Node2D
+extends TextureRect
 
-export(float) var fadeDuration = 0.5;
-export(float) var fadeAmount = 0.0;
+@export var fadeDuration: float = 0.5;
 
+var fadeAmount: float = 0.0;
 var targetPosition = Vector2(0.0, 0.0);
-
 var aspect = float(1.0);
 var tiling = Vector2(1.0, 1.0);
 var offset = Vector2(0.0, 0.0);
@@ -16,44 +15,41 @@ func _ready():
 	_calculateHypotenuse();
 	pass 
 
-func _process(delta):
-	_setShaderParameters();
-	pass
-
 func _input(event):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and event.pressed:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			targetPosition = _getNormalizedScreenPosition(event.position);
-			_fadeOut();
+			_tweeenFade();
 
-func _getNormalizedScreenPosition(screenPos):
-	screenPos.x /= OS.window_size.x;
-	screenPos.y /= OS.window_size.y;
-	return screenPos;
-	
-func _fadeOut():
+func _tweeenFade():
+	_calculateAspect();
 	_calculateOffset();
 	_calculateHypotenuse();
-	var tween = self.get_node("Tween");
-	tween.interpolate_property(self, "fadeAmount", 0, 1, fadeDuration, Tween.TRANS_LINEAR);
-	tween.interpolate_callback(self, fadeDuration + 0.1, "_fadeIn");
-	tween.start();
-	pass
-	
-func _fadeIn():
-	var tween = self.get_node("Tween");
-	tween.interpolate_property(self, "fadeAmount", 1, 0, fadeDuration, Tween.TRANS_LINEAR);
-	tween.start();
+	_setShaderParameters();
+	var tween = get_tree().create_tween();
+	tween.tween_method(
+	  func(value): material.set_shader_parameter("fadeAmount", value),  
+	  0.0, 1.0,  
+	  fadeDuration);
+	tween.tween_method(
+	  func(value): material.set_shader_parameter("fadeAmount", value),  
+	  1.0, 0.0,  
+	  fadeDuration);
 	pass
 
+func _getNormalizedScreenPosition(screenPos):
+	screenPos.x /= get_window().size.x;
+	screenPos.y /= get_window().size.y;
+	return screenPos;
+
 func _calculateAspect():
-	var size = OS.window_size;
-	if(size.x > size.y):
-		aspect = size.x / size.y;
+	var size = get_window().size;
+	if (size.x > size.y):
+		aspect = float(size.x) / size.y;
 		tiling.x = aspect;
 		tiling.y = 1;
 	else:
-		aspect = size.y / size.x;
+		aspect = float(size.y) / size.x;
 		tiling.y = aspect;
 		tiling.x = 1;
 	pass
@@ -61,7 +57,7 @@ func _calculateAspect():
 func _calculateOffset():
 	offset = targetPosition;
 	
-	if(OS.window_size.x > OS.window_size.y):
+	if (get_window().size.x > get_window().size.y):
 		offset.x *= aspect;
 	else:
 		offset.y *= aspect;
@@ -73,7 +69,7 @@ func _calculateHypotenuse():
 	var y = offset.y;
 	
 	var screenCenterNormalized = Vector2(0.5, 0.5);
-	if(OS.window_size.x > OS.window_size.y):
+	if(get_window().size.x > get_window().size.y):
 		screenCenterNormalized.x *= aspect;
 	else:
 		screenCenterNormalized.y *= aspect;
@@ -90,8 +86,7 @@ func _calculateHypotenuse():
 	pass
 
 func _setShaderParameters():
-	self.material.set_shader_param("fadeAmount", fadeAmount);
-	self.material.set_shader_param("hypotenuse", hypotenuse);
-	self.material.set_shader_param("offset", offset);
-	self.material.set_shader_param("tiling", tiling);
+	self.material.set_shader_parameter("hypotenuse", hypotenuse);
+	self.material.set_shader_parameter("offset", offset);
+	self.material.set_shader_parameter("tiling", tiling);
 	pass

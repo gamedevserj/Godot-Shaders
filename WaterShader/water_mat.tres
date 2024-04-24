@@ -1,40 +1,39 @@
-[gd_resource type="ShaderMaterial" load_steps=4 format=2]
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://dob7hvc1kwo63"]
 
-[ext_resource path="res://WaterShader/water_shader.shader" type="Shader" id=1]
+[ext_resource type="Shader" path="res://WaterShader/water_shader.gdshader" id="1"]
 
-[sub_resource type="OpenSimplexNoise" id=1]
+[sub_resource type="FastNoiseLite" id="1"]
 
-[sub_resource type="NoiseTexture" id=2]
+[sub_resource type="NoiseTexture2D" id="2"]
 seamless = true
-noise = SubResource( 1 )
+noise = SubResource("1")
 
 [resource]
-render_priority = 1
-shader = ExtResource( 1 )
-shader_param/reflectionOffset = -0.1
-shader_param/reflectionBlur = 0.0
-shader_param/calculatedOffset = 0.0
-shader_param/calculatedAspect = 1.0
-shader_param/offsetStrength = 0.05
-shader_param/maxOffset = 10.0
-shader_param/distortionScale = Vector2( 5, 5 )
-shader_param/distortionSpeed = Vector2( 0.1, 0.1 )
-shader_param/distortionStrength = Vector2( 0.39, 0.348 )
-shader_param/waveSmoothing = 0.01
-shader_param/mainWaveSpeed = 2.0
-shader_param/mainWaveFrequency = 20.0
-shader_param/mainWaveAmplitude = 0.005
-shader_param/secondWaveSpeed = 2.5
-shader_param/secondWaveFrequency = 60.0
-shader_param/secondWaveAmplitude = 0.002
-shader_param/thirdWaveSpeed = 3.0
-shader_param/thirdWaveFrequency = 50.0
-shader_param/thirdWaveAmplitude = 0.002
-shader_param/squashing = 1.0
-shader_param/shorelineColor = Color( 0.0941176, 0.6, 0.976471, 1 )
-shader_param/shorelineSize = 0.007
-shader_param/foamSize = 0.013
-shader_param/foamStrength = 0.321
-shader_param/foamSpeed = -0.1
-shader_param/foamScale = Vector2( 8, 3 )
-shader_param/noiseTexture = SubResource( 2 )
+shader = ExtResource("1")
+shader_parameter/tintStrength = 0.569
+shader_parameter/waterColor = Color(0, 0, 1, 1)
+shader_parameter/reflectionOffset = 0.0
+shader_parameter/reflectionBlur = 0.0
+shader_parameter/calculatedOffset = 0.0
+shader_parameter/calculatedAspect = 1.0
+shader_parameter/distortionScale = Vector2(1, 1)
+shader_parameter/distortionSpeed = Vector2(0.05, 0.02)
+shader_parameter/distortionStrength = 0.03
+shader_parameter/waveSmoothing = 0.01
+shader_parameter/mainWaveSpeed = 2.5
+shader_parameter/mainWaveFrequency = 20.0
+shader_parameter/mainWaveAmplitude = 0.005
+shader_parameter/secondWaveSpeed = 2.5
+shader_parameter/secondWaveFrequency = 20.0
+shader_parameter/secondWaveAmplitude = 0.01
+shader_parameter/thirdWaveSpeed = 2.5
+shader_parameter/thirdWaveFrequency = 20.0
+shader_parameter/thirdWaveAmplitude = 0.01
+shader_parameter/squashing = 1.0
+shader_parameter/shorelineColor = Color(0.0941176, 0.678431, 0.976471, 1)
+shader_parameter/shorelineSize = 0.012
+shader_parameter/foamSize = 0.057
+shader_parameter/foamStrength = 0.199
+shader_parameter/foamSpeed = 0.1
+shader_parameter/foamScale = Vector2(20, 10)
+shader_parameter/noiseTexture = SubResource("2")

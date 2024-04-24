@@ -1,0 +1,168 @@
+[gd_scene load_steps=22 format=3 uid="uid://bckvaixxg86te"]
+
+[ext_resource type="Texture2D" uid="uid://dtqbrhmx6rgo1" path="res://Assets/Sunnyland/artwork/Environment/back.png" id="1_ip7qr"]
+[ext_resource type="Texture2D" uid="uid://boujvlbmki6bf" path="res://Assets/Sunnyland/artwork/Environment/props/tree.png" id="2_jtdhu"]
+[ext_resource type="Texture2D" uid="uid://c4an8pnge3q21" path="res://Assets/Sunnyland/artwork/Environment/props/rock.png" id="3_e2uun"]
+[ext_resource type="Texture2D" uid="uid://ci2fa5t2me6h" path="res://Assets/Sunnyland/artwork/Environment/props/shrooms.png" id="4_aef6j"]
+[ext_resource type="Texture2D" uid="uid://byi2rxheft22k" path="res://Assets/Sunnyland/artwork/Environment/props/big-crate.png" id="5_ygbst"]
+[ext_resource type="Texture2D" uid="uid://cyporcuua045k" path="res://Assets/Sunnyland/artwork/Environment/props/bush.png" id="6_fsp3d"]
+[ext_resource type="Texture2D" uid="uid://crhg85pob7c0f" path="res://Assets/Sunnyland/artwork/Environment/props/house.png" id="7_xqyvo"]
+[ext_resource type="Texture2D" uid="uid://ckjebykt1e8jx" path="res://Assets/Sunnyland/artwork/Environment/middle.png" id="8_gp56s"]
+[ext_resource type="Texture2D" uid="uid://6kcyoip7w4qu" path="res://Assets/Sunnyland/artwork/Sprites/player/idle/player-idle-1.png" id="9_fmbye"]
+[ext_resource type="Texture2D" uid="uid://s3rb6yuxqyhb" path="res://Assets/Sunnyland/artwork/Sprites/player/idle/player-idle-2.png" id="10_grdut"]
+[ext_resource type="Texture2D" uid="uid://dumqipkpdbe8k" path="res://Assets/Sunnyland/artwork/Sprites/player/idle/player-idle-3.png" id="11_llyvj"]
+[ext_resource type="Texture2D" uid="uid://bjf07piu25laq" path="res://Assets/Sunnyland/artwork/Sprites/player/idle/player-idle-4.png" id="12_n5tco"]
+[ext_resource type="Script" path="res://WaterShader/camera_script.gd" id="13_xn6xs"]
+[ext_resource type="Material" uid="uid://dob7hvc1kwo63" path="res://WaterShader/water_mat.tres" id="14_nbv3r"]
+[ext_resource type="Texture2D" uid="uid://6g4ty2fvfe" path="res://WaterShader/noise.png" id="15_skmma"]
+[ext_resource type="Script" path="res://WaterShader/water_script.gd" id="16_weorx"]
+[ext_resource type="Shader" path="res://RingShader/ring.gdshader" id="17_38tm0"]
+[ext_resource type="Texture2D" uid="uid://3mjuf8jwwfly" path="res://pixel.png" id="18_1ut3k"]
+[ext_resource type="PackedScene" uid="uid://bwo86o365235w" path="res://ground.tscn" id="21_uiak0"]
+
+[sub_resource type="SpriteFrames" id="1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_fmbye")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_grdut")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_llyvj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_n5tco")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tkqeh"]
+shader = ExtResource("17_38tm0")
+shader_parameter/ringColor = Color(0.141176, 0.427451, 1, 1)
+shader_parameter/innerSmoothing = 0.243
+shader_parameter/outerSmoothing = 0.162
+shader_parameter/ringSize = 0.341
+shader_parameter/ringWidth = 0.34
+shader_parameter/maskSmoothing = 0.838
+shader_parameter/noiseStrength = 0.533
+
+[node name="Node2D" type="Node2D"]
+
+[node name="bg" type="Sprite2D" parent="."]
+z_index = -5
+position = Vector2(15, -167.395)
+scale = Vector2(5, 5)
+texture = ExtResource("1_ip7qr")
+
+[node name="props" type="Node2D" parent="."]
+
+[node name="tree" type="Sprite2D" parent="props"]
+z_index = -2
+position = Vector2(-93.8489, -138.933)
+texture = ExtResource("2_jtdhu")
+
+[node name="rock" type="Sprite2D" parent="props"]
+z_index = -2
+position = Vector2(-47.407, -38.672)
+texture = ExtResource("3_e2uun")
+
+[node name="rock2" type="Sprite2D" parent="props"]
+z_index = -2
+position = Vector2(-108.961, -37.7967)
+texture = ExtResource("3_e2uun")
+
+[node name="shrooms" type="Sprite2D" parent="props"]
+z_index = -2
+position = Vector2(-114.61, -102.389)
+texture = ExtResource("4_aef6j")
+
+[node name="shrooms2" type="Sprite2D" parent="props"]
+z_index = -2
+position = Vector2(-153.721, -102.39)
+texture = ExtResource("4_aef6j")
+
+[node name="big-crate" type="Sprite2D" parent="props"]
+z_index = 1
+position = Vector2(-110.983, -44.25)
+texture = ExtResource("5_ygbst")
+
+[node name="bush" type="Sprite2D" parent="props"]
+z_index = 1
+position = Vector2(-43.0405, -44.25)
+texture = ExtResource("6_fsp3d")
+
+[node name="house" type="Sprite2D" parent="props"]
+z_index = -2
+position = Vector2(58.7934, -83.542)
+texture = ExtResource("7_xqyvo")
+
+[node name="Node2D" type="Node2D" parent="props"]
+
+[node name="middle" type="Sprite2D" parent="props/Node2D"]
+z_index = -3
+position = Vector2(-3.50484, -7.55041)
+texture = ExtResource("8_gp56s")
+
+[node name="middle2" type="Sprite2D" parent="props/Node2D"]
+z_index = -3
+position = Vector2(172.495, -6.28241)
+texture = ExtResource("8_gp56s")
+
+[node name="middle3" type="Sprite2D" parent="props/Node2D"]
+z_index = -3
+position = Vector2(348.495, -6.28241)
+texture = ExtResource("8_gp56s")
+
+[node name="middle4" type="Sprite2D" parent="props/Node2D"]
+z_index = -3
+position = Vector2(-179.505, -6.28241)
+texture = ExtResource("8_gp56s")
+
+[node name="middle5" type="Sprite2D" parent="props/Node2D"]
+z_index = -3
+position = Vector2(-355.505, -6.28241)
+texture = ExtResource("8_gp56s")
+
+[node name="Player" type="AnimatedSprite2D" parent="."]
+z_index = 1
+position = Vector2(-24.7046, -47.0862)
+sprite_frames = SubResource("1")
+frame = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -150)
+limit_smoothed = true
+position_smoothing_speed = 10.0
+script = ExtResource("13_xn6xs")
+positionIncrement = 1.0
+speed = 5.0
+canBeMoved = false
+target = NodePath("../CamTarget")
+
+[node name="CamTarget" type="Node2D" parent="."]
+position = Vector2(0, -150)
+
+[node name="Water" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(0, 0.619608, 1, 1)
+z_index = 5
+material = ExtResource("14_nbv3r")
+scale = Vector2(1.25064, 0.79958)
+texture = ExtResource("15_skmma")
+offset = Vector2(0, 256)
+script = ExtResource("16_weorx")
+cameraPath = NodePath("../Camera2D")
+
+[node name="Ring" type="Sprite2D" parent="."]
+z_index = 6
+z_as_relative = false
+material = SubResource("ShaderMaterial_tkqeh")
+position = Vector2(69, -72)
+scale = Vector2(150, 150)
+texture = ExtResource("18_1ut3k")
+
+[node name="ground" parent="." instance=ExtResource("21_uiak0")]

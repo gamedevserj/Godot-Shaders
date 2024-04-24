@@ -1,0 +1,178 @@
+[gd_scene load_steps=24 format=3 uid="uid://bteg38i4y50gv"]
+
+[ext_resource type="PackedScene" uid="uid://bwo86o365235w" path="res://ground.tscn" id="1_abxph"]
+[ext_resource type="Texture2D" uid="uid://dtqbrhmx6rgo1" path="res://Assets/Sunnyland/artwork/Environment/back.png" id="2_to1a0"]
+[ext_resource type="Texture2D" uid="uid://boujvlbmki6bf" path="res://Assets/Sunnyland/artwork/Environment/props/tree.png" id="3_g15ir"]
+[ext_resource type="Texture2D" uid="uid://c4an8pnge3q21" path="res://Assets/Sunnyland/artwork/Environment/props/rock.png" id="4_lacuo"]
+[ext_resource type="Texture2D" uid="uid://ci2fa5t2me6h" path="res://Assets/Sunnyland/artwork/Environment/props/shrooms.png" id="5_unmip"]
+[ext_resource type="Texture2D" uid="uid://byi2rxheft22k" path="res://Assets/Sunnyland/artwork/Environment/props/big-crate.png" id="6_t5ld4"]
+[ext_resource type="Texture2D" uid="uid://cyporcuua045k" path="res://Assets/Sunnyland/artwork/Environment/props/bush.png" id="7_m3lpq"]
+[ext_resource type="Texture2D" uid="uid://crhg85pob7c0f" path="res://Assets/Sunnyland/artwork/Environment/props/house.png" id="8_ki65r"]
+[ext_resource type="Texture2D" uid="uid://ckjebykt1e8jx" path="res://Assets/Sunnyland/artwork/Environment/middle.png" id="9_jcmjp"]
+[ext_resource type="Texture2D" uid="uid://6kcyoip7w4qu" path="res://Assets/Sunnyland/artwork/Sprites/player/idle/player-idle-1.png" id="10_l8fui"]
+[ext_resource type="Texture2D" uid="uid://s3rb6yuxqyhb" path="res://Assets/Sunnyland/artwork/Sprites/player/idle/player-idle-2.png" id="11_5s1mk"]
+[ext_resource type="Texture2D" uid="uid://dumqipkpdbe8k" path="res://Assets/Sunnyland/artwork/Sprites/player/idle/player-idle-3.png" id="12_50n8c"]
+[ext_resource type="Texture2D" uid="uid://bjf07piu25laq" path="res://Assets/Sunnyland/artwork/Sprites/player/idle/player-idle-4.png" id="13_8dr4c"]
+[ext_resource type="Script" path="res://WaterShader/camera_script.gd" id="14_wv1dl"]
+[ext_resource type="Material" uid="uid://dob7hvc1kwo63" path="res://WaterShader/water_mat.tres" id="15_xsies"]
+[ext_resource type="Texture2D" uid="uid://6g4ty2fvfe" path="res://WaterShader/noise.png" id="16_iwf0r"]
+[ext_resource type="Script" path="res://WaterShader/water_script.gd" id="17_okm6k"]
+[ext_resource type="Shader" path="res://FakePerspective/fake_perspective.gdshader" id="18_fnx5e"]
+[ext_resource type="Texture2D" uid="uid://dk5mlb3v2bjs0" path="res://Checkerboard.png" id="19_nynuj"]
+[ext_resource type="Shader" path="res://FakePerspective/fake_perspective_v2.gdshader" id="20_bgol4"]
+
+[sub_resource type="SpriteFrames" id="1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_l8fui")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_5s1mk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_50n8c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_8dr4c")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7qpcr"]
+shader = ExtResource("18_fnx5e")
+shader_parameter/offset = Vector2(0, 0)
+shader_parameter/perspective = 1.0
+shader_parameter/horizontalTiling = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hg1ec"]
+shader = ExtResource("20_bgol4")
+shader_parameter/tiling = Vector2(1, 4)
+shader_parameter/offset = Vector2(0, 0)
+shader_parameter/perspective = 2.0
+
+[node name="Node2D" type="Node2D"]
+
+[node name="ground" parent="." instance=ExtResource("1_abxph")]
+
+[node name="bg" type="Sprite2D" parent="."]
+z_index = -5
+position = Vector2(15, -167.395)
+scale = Vector2(5, 5)
+texture = ExtResource("2_to1a0")
+
+[node name="props" type="Node2D" parent="."]
+
+[node name="tree" type="Sprite2D" parent="props"]
+z_index = -1
+position = Vector2(-93.8489, -138.933)
+texture = ExtResource("3_g15ir")
+
+[node name="rock" type="Sprite2D" parent="props"]
+position = Vector2(-47.407, -38.672)
+texture = ExtResource("4_lacuo")
+
+[node name="rock2" type="Sprite2D" parent="props"]
+position = Vector2(-108.961, -37.7967)
+texture = ExtResource("4_lacuo")
+
+[node name="shrooms" type="Sprite2D" parent="props"]
+position = Vector2(-114.61, -102.389)
+texture = ExtResource("5_unmip")
+
+[node name="shrooms2" type="Sprite2D" parent="props"]
+z_index = -2
+position = Vector2(-153.721, -102.39)
+texture = ExtResource("5_unmip")
+
+[node name="big-crate" type="Sprite2D" parent="props"]
+z_index = -1
+position = Vector2(-110.983, -270.636)
+texture = ExtResource("6_t5ld4")
+
+[node name="bush" type="Sprite2D" parent="props"]
+z_index = -1
+position = Vector2(-43.0405, -266.451)
+texture = ExtResource("7_m3lpq")
+
+[node name="house" type="Sprite2D" parent="props"]
+texture_repeat = 2
+position = Vector2(58.7934, -83.542)
+texture = ExtResource("8_ki65r")
+
+[node name="middle" type="Sprite2D" parent="props"]
+z_index = -2
+position = Vector2(-3.50484, -7.55041)
+texture = ExtResource("9_jcmjp")
+
+[node name="middle2" type="Sprite2D" parent="props/middle"]
+z_index = -2
+position = Vector2(176, 1.268)
+texture = ExtResource("9_jcmjp")
+
+[node name="middle3" type="Sprite2D" parent="props/middle"]
+z_index = -2
+position = Vector2(352, 1.268)
+texture = ExtResource("9_jcmjp")
+
+[node name="middle4" type="Sprite2D" parent="props/middle"]
+z_index = -2
+position = Vector2(-176, 1.268)
+texture = ExtResource("9_jcmjp")
+
+[node name="middle5" type="Sprite2D" parent="props/middle"]
+z_index = -2
+position = Vector2(-352, 1.268)
+texture = ExtResource("9_jcmjp")
+
+[node name="Player" type="AnimatedSprite2D" parent="."]
+z_index = 1
+texture_repeat = 2
+position = Vector2(-33, -63.7)
+sprite_frames = SubResource("1")
+frame = 3
+offset = Vector2(0, 16)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -10)
+zoom = Vector2(2, 2)
+limit_smoothed = true
+position_smoothing_speed = 10.0
+script = ExtResource("14_wv1dl")
+zoomIncrement = 0.1
+speed = 5.0
+target = NodePath("../CamTarget")
+
+[node name="CamTarget" type="Node2D" parent="."]
+
+[node name="Water" type="Sprite2D" parent="."]
+z_index = 5
+texture_repeat = 2
+material = ExtResource("15_xsies")
+scale = Vector2(2.6, 0.169922)
+texture = ExtResource("16_iwf0r")
+offset = Vector2(0, 256)
+region_enabled = true
+region_rect = Rect2(0, 0, 512, 512)
+script = ExtResource("17_okm6k")
+cameraPath = NodePath("../Camera2D")
+
+[node name="Original" type="Sprite2D" parent="."]
+texture_repeat = 2
+position = Vector2(-67.32, -81)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("19_nynuj")
+
+[node name="FakePerspective_v1" type="Sprite2D" parent="Original"]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_7qpcr")
+position = Vector2(626.6, -20)
+texture = ExtResource("19_nynuj")
+
+[node name="FakePerspective_v2" type="Sprite2D" parent="Original"]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_hg1ec")
+position = Vector2(1256.6, -20)
+texture = ExtResource("19_nynuj")

@@ -1,28 +1,29 @@
-[gd_resource type="ShaderMaterial" load_steps=6 format=2]
+[gd_resource type="ShaderMaterial" load_steps=6 format=3 uid="uid://ri4nsbdoj3w5"]
 
-[ext_resource path="res://StealthCloakEffect/stealth_cloak_effect.shader" type="Shader" id=1]
+[ext_resource type="Shader" path="res://StealthCloakEffect/stealth_cloak_effect.gdshader" id="1"]
 
-[sub_resource type="OpenSimplexNoise" id=1]
+[sub_resource type="FastNoiseLite" id="1"]
 
-[sub_resource type="NoiseTexture" id=2]
+[sub_resource type="NoiseTexture2D" id="2"]
 seamless = true
-noise = SubResource( 1 )
+noise = SubResource("1")
 
-[sub_resource type="OpenSimplexNoise" id=3]
+[sub_resource type="FastNoiseLite" id="3"]
 
-[sub_resource type="NoiseTexture" id=4]
+[sub_resource type="NoiseTexture2D" id="4"]
 seamless = true
-noise = SubResource( 3 )
+noise = SubResource("3")
 
 [resource]
-shader = ExtResource( 1 )
-shader_param/noiseScale = 2.0
-shader_param/dissolveAmount = 0.953
-shader_param/edgeThickness = 0.03
-shader_param/edgeColor = Color( 0, 1, 0.0156863, 1 )
-shader_param/invisibilityTint = null
-shader_param/distortionTiling = Vector2( 1, 1 )
-shader_param/distortionSpeed = Vector2( 0, -0.1 )
-shader_param/distortionStrength = 0.308
-shader_param/dissolveNoiseTexture = SubResource( 2 )
-shader_param/distortionNoiseTexture = SubResource( 4 )
+shader = ExtResource("1")
+shader_parameter/dissolveNoiseScale = 1.0
+shader_parameter/dissolveAmount = 0.0
+shader_parameter/edgeThickness = 0.03
+shader_parameter/edgeColor = Color(0, 1, 0.0156863, 1)
+shader_parameter/invisibilityTint = Color(0.388235, 0.407843, 1, 1)
+shader_parameter/tintStrength = 0.391
+shader_parameter/distortionTiling = Vector2(1, 1)
+shader_parameter/distortionSpeed = Vector2(1, 0)
+shader_parameter/distortionStrength = 0.005
+shader_parameter/dissolveNoiseTexture = SubResource("2")
+shader_parameter/distortionNoiseTexture = SubResource("4")

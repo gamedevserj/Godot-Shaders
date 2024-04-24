@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://b3m47b0r3n7ro"]
+
+[ext_resource type="Material" uid="uid://rii3x7f3pqgn" path="res://CircularFadeOutShader/fade_out_mat.tres" id="1_afjoi"]
+[ext_resource type="Texture2D" uid="uid://3mjuf8jwwfly" path="res://pixel.png" id="2_kculk"]
+[ext_resource type="Script" path="res://CircularFadeOutShader/circular_fade_out_script.gd" id="3_tkypc"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+layer = 2
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+z_index = 7
+material = ExtResource("1_afjoi")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_kculk")
+script = ExtResource("3_tkypc")

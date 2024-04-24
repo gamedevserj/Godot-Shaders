@@ -1,15 +1,19 @@
 extends Camera2D
 
-export(float) var zoomIncrement = 0.05;
-export(float) var positionIncrement = 0.1;
-export(float) var speed = 1;
-export(bool) var canBeMoved = true;
-export(bool) var canZoom = true;
+@export var zoomIncrement: float = 0.05;
+@export var positionIncrement: float = 0.1;
+@export var speed: float = 1;
+@export var canBeMoved: bool = true;
+@export var canZoom: bool = true;
 
-export(NodePath) var target;
+@export var target: NodePath;
 
 var camZoom = Vector2(1,1);
 var targetPos = Vector2.ZERO;
+
+func _ready():
+	if(canZoom): camZoom = self.zoom;
+pass
 
 func _process(delta):
 	if(canZoom): self.zoom = camZoom;
