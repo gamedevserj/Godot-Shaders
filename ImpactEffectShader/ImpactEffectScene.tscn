@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bcxsb8t2tw8hh"]
+[gd_scene load_steps=32 format=3 uid="uid://bcxsb8t2tw8hh"]
 
 [ext_resource type="Texture2D" uid="uid://dtqbrhmx6rgo1" path="res://Assets/Sunnyland/artwork/Environment/back.png" id="1"]
 [ext_resource type="Texture2D" uid="uid://boujvlbmki6bf" path="res://Assets/Sunnyland/artwork/Environment/props/tree.png" id="2"]
@@ -21,6 +21,8 @@
 [ext_resource type="Texture2D" uid="uid://2a5md77h02ne" path="res://ImpactEffectShader/Waves.png" id="18_4230y"]
 [ext_resource type="Script" path="res://ImpactEffectShader/impact_effect_script.gd" id="19"]
 [ext_resource type="PackedScene" uid="uid://bwo86o365235w" path="res://ground.tscn" id="20_lunqh"]
+[ext_resource type="Shader" path="res://ImpactEffectShader/impact_effect_procedural.gdshader" id="21_q06a3"]
+[ext_resource type="Script" path="res://ImpactEffectShader/impact_effect_procedural.gd" id="22_bgqbk"]
 
 [sub_resource type="SpriteFrames" id="1"]
 animations = [{
@@ -46,6 +48,86 @@ animations = [{
 shader = ExtResource("17_03ab6")
 shader_parameter/offsetStrength = 0.5
 shader_parameter/noiseTexture = ExtResource("18_4230y")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_gtq3m"]
+fractal_weighted_strength = 1.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_e1x5c"]
+seamless = true
+noise = SubResource("FastNoiseLite_gtq3m")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_knfoc"]
+shader = ExtResource("21_q06a3")
+shader_parameter/maskSize = 1.0
+shader_parameter/ringSize = 0.0
+shader_parameter/ringWidth = 0.275
+shader_parameter/innerSmoothing = 0.38
+shader_parameter/outerSmoothing = 0.365
+shader_parameter/offsetStrength = 0.159
+shader_parameter/offsetValue = 0.371
+shader_parameter/noiseTexture = SubResource("NoiseTexture2D_e1x5c")
+
+[sub_resource type="Animation" id="Animation_hvu8e"]
+resource_name = "ShowImpact"
+length = 0.35
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/ringSize")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:shader_parameter/offsetValue")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.2, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_5sk1y"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/ringSize")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:shader_parameter/offsetValue")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.371]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cb2vm"]
+_data = {
+"RESET": SubResource("Animation_5sk1y"),
+"ShowImpact": SubResource("Animation_hvu8e")
+}
 
 [node name="Node2D" type="Node2D"]
 
@@ -162,5 +244,20 @@ material = SubResource("ShaderMaterial_5sviv")
 position = Vector2(121, -70)
 texture = ExtResource("18_1vcue")
 script = ExtResource("19")
+
+[node name="ImpactEffectProcedural" type="Sprite2D" parent="." node_paths=PackedStringArray("animation_player")]
+z_index = 10
+z_as_relative = false
+material = SubResource("ShaderMaterial_knfoc")
+position = Vector2(7, -88)
+scale = Vector2(400, 400)
+texture = ExtResource("18_1vcue")
+script = ExtResource("22_bgqbk")
+animation_player = NodePath("AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ImpactEffectProcedural"]
+libraries = {
+"": SubResource("AnimationLibrary_cb2vm")
+}
 
 [node name="ground" parent="." instance=ExtResource("20_lunqh")]

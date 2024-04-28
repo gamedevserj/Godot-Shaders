@@ -46,9 +46,7 @@ shader_parameter/ringColor = Color(0.141176, 0.427451, 1, 1)
 shader_parameter/innerSmoothing = 0.243
 shader_parameter/outerSmoothing = 0.162
 shader_parameter/ringSize = 0.341
-shader_parameter/ringWidth = 0.34
-shader_parameter/maskSmoothing = 0.838
-shader_parameter/noiseStrength = 0.533
+shader_parameter/ringWidth = 0.175
 
 [node name="Node2D" type="Node2D"]
 

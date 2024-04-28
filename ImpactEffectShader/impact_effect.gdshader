@@ -13,7 +13,6 @@ void vertex()
 
 void fragment()
 {
-	
 	vec2 noiseOffset = texture(noiseTexture, UV).rg;
 	
 	noiseOffset *= offsetStrength;
