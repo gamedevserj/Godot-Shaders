@@ -120,6 +120,7 @@ _data = {
 }
 
 [node name="Node2D" type="Node2D"]
+texture_filter = 1
 
 [node name="bg" type="Sprite2D" parent="."]
 z_index = -5
@@ -128,6 +129,7 @@ scale = Vector2(5, 5)
 texture = ExtResource("1")
 
 [node name="props" type="Node2D" parent="."]
+texture_filter = 1
 
 [node name="tree" type="Sprite2D" parent="props"]
 z_index = -2
@@ -198,6 +200,7 @@ texture = ExtResource("16")
 
 [node name="Player" type="AnimatedSprite2D" parent="."]
 z_index = 1
+texture_filter = 1
 position = Vector2(-24.7046, -47.0862)
 sprite_frames = SubResource("1")
 frame = 1
@@ -251,3 +254,4 @@ libraries = {
 }
 
 [node name="ground" parent="." instance=ExtResource("20_lunqh")]
+texture_filter = 1
